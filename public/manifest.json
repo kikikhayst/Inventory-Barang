@@ -1,0 +1,24 @@
+{
+    "name": "Bebolaan",
+    "gcm_sender_id": "215456186893",
+    "short_name": "Bebolaan",
+    "description": "Aplikasi ini adalah aplikasi PWA kedua saya yang berisi tentang informasi terkait klasemen bola. dan aplikasi PWA ini juga digunakan untuk memenuhi Submission 2 di Dicoding PWA.",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#2ec1ac",
+    "theme_color": "#2ec1ac",
+    "icons": [
+        {
+            "src": "/assets/icon-app-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/assets/icon-app-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Sepak Bola</title>
+    <meta name="description" content="My first PWA" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/css/materialize.min.css" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#2ec1ac" />
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <link rel="apple-touch-icon" href="/assets/icon-app-192-apple.png">
+    <link rel="shortcut icon" href="/assets/favicon-16.png">
+</head>
+
+<body>
+    <!-- Navigation and Header #2ec1ac-->
+    <nav style="background-color: #2ec1ac;" role="navigation">
+        <div class="nav-wrapper container">
+            <a href="#" class="brand-logo" id="logo-container">Bebolaan</a>
+            <a href="./index.html" class="sidenav-trigger" data-target="nav-mobile">
+                <i class="material-icons">arrow_back</i>
+            </a>
+            <ul class="topnav right hide-on-med-and-down"></ul>
+            <ul class="sidenav" id="nav-mobile"></ul>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="container" id="team-detail"></div>
+    <!-- Button -->
+    <!-- tambahkan baris di bawah -->
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large red" id="save">
+            
+        </a>
+    </div>
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large red" id="delete">
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="page-footer" style="background-color: #2ec1ac;">
+        <div class="footer-copyright">
+            <div class="container">
+                Kikikhayst Corp ©2020 Copyright All Rights Reserved
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="https://unpkg.com/snarkdown@1.0.2/dist/snarkdown.umd.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/idb.js"></script>
+    <script src="js/db.js"></script>
+    <script>
+        // REGISTER SERVICE WORKER
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker
+                    .register("/service-worker.js")
+                    .then(() => {
+                        console.log("Pendaftaran ServiceWorker berhasil");
+                    })
+                    .catch(() => {
+                        console.log("Pendaftaran ServiceWorker gagal");
+                    });
+            });
+        } else {
+            console.log("ServiceWorker belum didukung browser ini.");
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+            let urlParams = new URLSearchParams(window.location.search);
+            let isFromSaved = urlParams.get("saved");
+            const btnSave = document.getElementById("save");
+            const btnDelete = document.getElementById("delete");
+
+            btnDelete.innerHTML = `<i class="large material-icons">delete</i>`;
+            btnSave.innerHTML = `<i class="large material-icons">save</i>`;
+
+            if (isFromSaved) {
+                btnSave.style.display = 'none';
+                let itemDelete = getSavedArticleById();
+            } else {
+                btnDelete.style.display = 'none';
+                let item = getArticleTeam();
+            }
+
+        });
+        // document.addEventListener("DOMContentLoaded", () => {
+           // const item = getArticleTeam();
+        // });
+    </script>
+</body>
+
+</html>
